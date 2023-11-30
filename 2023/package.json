@@ -2,7 +2,7 @@
   "name": "aoc-2023",
   "version": "1.0.0",
   "license": "MIT",
-  "repository": "https://github.com/jlsuh/puzzles-and-challenges",
+  "repository": "https://github.com/jlsuh/advent-of-code",
   "type": "module",
   "scripts": {
     "aoc": "nodemon --quiet"
