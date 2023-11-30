@@ -9,7 +9,7 @@ const INPUT_FILE = "input.txt";
 const FILE_PATH = join(__dirname, DAY_SUBDIR, INPUT_FILE);
 const UTF8 = "utf8";
 
-function readInput() {
+const readInput = () => {
   return new Promise((resolve, reject) => {
     const chunks = [];
     const readableStream = fs.createReadStream(FILE_PATH, UTF8);
@@ -19,6 +19,6 @@ function readInput() {
       resolve(Buffer.concat(chunks).toString(UTF8)),
     );
   });
-}
+};
 
 export { readInput };
