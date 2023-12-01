@@ -7,45 +7,34 @@ const values = input.split("\n");
 
 const getSum = (values) =>
   values
-    .map((value) => {
-      const digits = value.match(/\d/g);
-      return +(digits[0] + digits[digits.length - 1]);
-    })
+    .map((match) => match.join(""))
+    .map((value) => +(value[0] + value[value.length - 1]))
     .reduce((acc, curr) => acc + curr, 0);
 
 // part-1
-const s1 = getSum(values);
-console.log(s1);
+const part1Solution = getSum(values.map((value) => value.match(/\d/g)));
+console.log(part1Solution);
 
 // part-2
 const transform = {
-  oneight: 18,
-  twone: 21,
-  threeight: 38,
-  fiveight: 58,
-  sevenine: 79,
-  eightwo: 82,
-  eighthree: 83,
-  nineight: 98,
-  one: 1,
-  two: 2,
-  three: 3,
-  four: 4,
-  five: 5,
-  six: 6,
-  seven: 7,
-  eight: 8,
-  nine: 9,
+  one: "1",
+  two: "2",
+  three: "3",
+  four: "4",
+  five: "5",
+  six: "6",
+  seven: "7",
+  eight: "8",
+  nine: "9",
 };
-
-const s2 = getSum(
+const pattern = `\\d|${Object.keys(transform).join("|")}`;
+const part2Solution = getSum(
   values.map((value) =>
-    value.replaceAll(
-      new RegExp(Object.keys(transform).join("|"), "g"),
-      (matched) => transform[matched],
+    [...value.matchAll(`(?=(${pattern}))`)].map(
+      (match) => transform[match[1]] ?? match[1],
     ),
   ),
 );
-console.log(s2);
+console.log(part2Solution);
 
 console.log("Elapsed:", performance.now() - start);
