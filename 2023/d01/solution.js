@@ -7,7 +7,7 @@ const values = input.split("\n");
 
 const getSum = (values) =>
   values
-    .map((match) => match.join(""))
+    .map((digits) => digits.join(""))
     .map((value) => +(value[0] + value[value.length - 1]))
     .reduce((acc, curr) => acc + curr, 0);
 
