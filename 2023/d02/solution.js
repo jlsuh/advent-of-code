@@ -3,9 +3,11 @@ import { readInput } from "../utils.js";
 const start = performance.now();
 const input = await readInput();
 
+const NUMBER = "\\d+";
+
 const games = input
   .split("\n")
-  .map((game) => game.match("\\d+\\s(.*)"))
+  .map((game) => game.match(`${NUMBER}\\s(.*)`))
   .map((gameInfo) => gameInfo[0].split("; "))
   .map((draw) => draw.map((cubes) => cubes.split(", ")));
 
@@ -18,8 +20,8 @@ const max = {
 const part1Solution = games.reduce((sum, game, index) => {
   for (const draws of game) {
     for (const cubes of draws) {
-      const color = cubes.match("(red|green|blue)")[0];
-      const quantity = cubes.match("\\d+")[0];
+      const color = cubes.match(`${Object.keys(max).join("|")}`)[0];
+      const quantity = cubes.match(`${NUMBER}`)[0];
       if (quantity > max[color]) return sum;
     }
   }
@@ -37,8 +39,8 @@ for (const game of games) {
   };
   for (const draws of game) {
     for (const cubes of draws) {
-      const color = cubes.match("(red|green|blue)")[0];
-      const quantity = cubes.match("\\d+")[0];
+      const color = cubes.match(`${Object.keys(fewestCubes).join("|")}`)[0];
+      const quantity = cubes.match(`${NUMBER}`)[0];
       fewestCubes[color] = Math.max(fewestCubes[color], quantity);
     }
   }
