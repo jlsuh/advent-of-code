@@ -1,19 +1,17 @@
-import { readInput } from "../utils.js";
+import { ints, readInput } from "../utils.js";
 
 const start = performance.now();
 const input = await readInput();
 
-const NUMBER = "\\d+";
-
 const games = input
   .split("\n")
-  .map((game) => game.match(`${NUMBER}\\s(.*)`)[0])
+  .map((game) => game.match(`\\d+\\s(.*)`)[0])
   .map((draws) => draws.split("; "))
   .map((draw) => draw.map((cubes) => cubes.split(", ")));
 
-const getCubeInfo = (cube, pattern) => ({
-  color: cube.match(pattern)[0],
-  quantity: cube.match(`${NUMBER}`)[0],
+const getCubeInfo = (cube, colorsPattern) => ({
+  color: cube.match(colorsPattern)[0],
+  quantity: ints(cube)[0],
 });
 
 // part-1

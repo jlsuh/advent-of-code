@@ -1,4 +1,4 @@
-import { readInput } from "../utils.js";
+import { ints, readInput } from "../utils.js";
 
 const input = await readInput();
 const start = performance.now();
@@ -12,7 +12,7 @@ const getSum = (values) =>
     .reduce((acc, curr) => acc + curr, 0);
 
 // part-1
-const part1Solution = getSum(values.map((value) => value.match(/\d/g)));
+const part1Solution = getSum(values.map((value) => ints(value)));
 console.log(part1Solution);
 
 // part-2
