@@ -11,12 +11,10 @@ const games = input
   .map((draws) => draws.split("; "))
   .map((draw) => draw.map((cubes) => cubes.split(", ")));
 
-const getCubeInfo = (cube, pattern) => {
-  return {
-    color: cube.match(pattern)[0],
-    quantity: cube.match(`${NUMBER}`)[0],
-  };
-};
+const getCubeInfo = (cube, pattern) => ({
+  color: cube.match(pattern)[0],
+  quantity: cube.match(`${NUMBER}`)[0],
+});
 
 // part-1
 const max = {
