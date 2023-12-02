@@ -1,5 +1,4 @@
-import readInput from "../readInput.js";
-import { alts, ints } from "../utils.js";
+import { alts, ints, readInput } from "../utils.js";
 
 const start = performance.now();
 const input = await readInput();
