@@ -1,4 +1,4 @@
-import { ints, readInput } from "../utils.js";
+import { alts, ints, readInput } from "../utils.js";
 
 const start = performance.now();
 const input = await readInput();
@@ -23,10 +23,7 @@ const max = {
 const part1Solution = games.reduce((sum, game, index) => {
   for (const draws of game) {
     for (const cube of draws) {
-      const { color, quantity } = getCubeInfo(
-        cube,
-        `${Object.keys(max).join("|")}`,
-      );
+      const { color, quantity } = getCubeInfo(cube, alts(max));
       if (quantity > max[color]) return sum;
     }
   }
@@ -43,10 +40,7 @@ const part2Solution = games.reduce((sum, game) => {
   };
   for (const draws of game) {
     for (const cube of draws) {
-      const { color, quantity } = getCubeInfo(
-        cube,
-        `${Object.keys(fewestCubes).join("|")}`,
-      );
+      const { color, quantity } = getCubeInfo(cube, alts(fewestCubes));
       fewestCubes[color] = Math.max(fewestCubes[color], quantity);
     }
   }

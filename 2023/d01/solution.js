@@ -1,4 +1,4 @@
-import { ints, readInput } from "../utils.js";
+import { alts, ints, readInput } from "../utils.js";
 
 const input = await readInput();
 const start = performance.now();
@@ -27,7 +27,7 @@ const transform = {
   eight: "8",
   nine: "9",
 };
-const pattern = `\\d|${Object.keys(transform).join("|")}`;
+const pattern = `\\d|${alts(transform)}`;
 const part2Solution = getSum(
   values.map((value) =>
     [...value.matchAll(`(?=(${pattern}))`)].map(

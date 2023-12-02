@@ -6,6 +6,12 @@ const ints = (string) => {
   return string.match(/\d+/g);
 };
 
+const alts = (...objects) =>
+  objects.reduce(
+    (pattern, object) => pattern + Object.keys(object).join("|"),
+    "",
+  );
+
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const SUBDIRS = process.argv[1].split(sep);
 const DAY_SUBDIR = SUBDIRS[SUBDIRS.length - 2];
@@ -25,4 +31,4 @@ const readInput = () => {
   });
 };
 
-export { ints, readInput };
+export { alts, ints, readInput };
