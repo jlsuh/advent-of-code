@@ -11,6 +11,13 @@ const games = input
   .map((gameInfo) => gameInfo.split("; "))
   .map((draw) => draw.map((cubes) => cubes.split(", ")));
 
+const getCubeInfo = (cube, pattern) => {
+  return {
+    color: cube.match(pattern)[0],
+    quantity: cube.match(`${NUMBER}`)[0],
+  };
+};
+
 // part-1
 const max = {
   red: 12,
@@ -19,9 +26,11 @@ const max = {
 };
 const part1Solution = games.reduce((sum, game, index) => {
   for (const draws of game) {
-    for (const cubes of draws) {
-      const color = cubes.match(`${Object.keys(max).join("|")}`)[0];
-      const quantity = cubes.match(`${NUMBER}`)[0];
+    for (const cube of draws) {
+      const { color, quantity } = getCubeInfo(
+        cube,
+        `${Object.keys(max).join("|")}`,
+      );
       if (quantity > max[color]) return sum;
     }
   }
@@ -37,9 +46,11 @@ const part2Solution = games.reduce((sum, game) => {
     blue: 0,
   };
   for (const draws of game) {
-    for (const cubes of draws) {
-      const color = cubes.match(`${Object.keys(fewestCubes).join("|")}`)[0];
-      const quantity = cubes.match(`${NUMBER}`)[0];
+    for (const cube of draws) {
+      const { color, quantity } = getCubeInfo(
+        cube,
+        `${Object.keys(fewestCubes).join("|")}`,
+      );
       fewestCubes[color] = Math.max(fewestCubes[color], quantity);
     }
   }
