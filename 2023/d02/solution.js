@@ -8,7 +8,7 @@ const NUMBER = "\\d+";
 const games = input
   .split("\n")
   .map((game) => game.match(`${NUMBER}\\s(.*)`)[0])
-  .map((gameInfo) => gameInfo.split("; "))
+  .map((draws) => draws.split("; "))
   .map((draw) => draw.map((cubes) => cubes.split(", ")));
 
 const getCubeInfo = (cube, pattern) => {
