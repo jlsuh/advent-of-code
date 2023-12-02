@@ -7,8 +7,8 @@ const NUMBER = "\\d+";
 
 const games = input
   .split("\n")
-  .map((game) => game.match(`${NUMBER}\\s(.*)`))
-  .map((gameInfo) => gameInfo[0].split("; "))
+  .map((game) => game.match(`${NUMBER}\\s(.*)`)[0])
+  .map((gameInfo) => gameInfo.split("; "))
   .map((draw) => draw.map((cubes) => cubes.split(", ")));
 
 // part-1
@@ -30,8 +30,7 @@ const part1Solution = games.reduce((sum, game, index) => {
 console.log(part1Solution);
 
 // part-2
-let part2Solution = 0;
-for (const game of games) {
+const part2Solution = games.reduce((sum, game) => {
   const fewestCubes = {
     red: 0,
     green: 0,
@@ -48,8 +47,8 @@ for (const game of games) {
     (prod, curr) => prod * curr,
     1,
   );
-  part2Solution += power;
-}
+  return sum + power;
+}, 0);
 console.log(part2Solution);
 
 console.log("Elapsed:", performance.now() - start);
