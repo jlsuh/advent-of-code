@@ -2,15 +2,15 @@ import fs from "fs";
 import { dirname, join, sep } from "path";
 import { fileURLToPath } from "url";
 
-const ints = (string) => {
-  return string.match(/\d+/g);
-};
-
 const alts = (...objects) =>
   objects.reduce(
     (pattern, object) => pattern + Object.keys(object).join("|"),
     "",
   );
+
+const ints = (string) => {
+  return string.match(/\d+/g);
+};
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const SUBDIRS = process.argv[1].split(sep);
