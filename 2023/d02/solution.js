@@ -4,7 +4,7 @@ const start = performance.now();
 const input = await readInput();
 
 const games = input
-  .split("\n")
+  .split("\r\n")
   .map((game) => game.match(`\\d+\\s(.*)`)[0])
   .map((draws) => draws.split("; "))
   .map((draw) => draw.map((cubes) => cubes.split(", ")));
