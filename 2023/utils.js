@@ -43,7 +43,7 @@ const alts = (...objects) =>
  * @returns {string[]}
  */
 const ints = (string) => {
-  return string.match(/\d+/g);
+  return [...string.matchAll(/\d+/g)];
 };
 
 export { alts, ints, readInput };
