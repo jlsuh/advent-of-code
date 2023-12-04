@@ -3,7 +3,7 @@ import { ints, readInput } from "../utils.js";
 const start = performance.now();
 const input = await readInput();
 
-const schema = input.split("\r\n");
+const schema = input.split(/\r\n/);
 
 const nonCoaxialSteps = (row, col, numberOfRows) => {
   const steps = [];
@@ -42,7 +42,7 @@ for (let rowIndex = 0; rowIndex < schema.length; rowIndex += 1) {
     const strNumber = number[0];
     part1Solution += adjacentSteps(pivot, strNumber, schema.length, row.length)
       .reduce((sum, step) => sum + schema[step.row][step.col], "")
-      .match("[*#$@&%+/=-]")
+      .match(/[*#$@&%+/=-]/)
       ? +strNumber
       : 0;
   }
@@ -58,7 +58,7 @@ for (let rowIndex = 0; rowIndex < schema.length; rowIndex += 1) {
     const strNumber = number[0];
     const steps = adjacentSteps(pivot, strNumber, schema.length, row.length);
     for (const step of steps) {
-      if (schema[step.row][step.col].match("\\*")) {
+      if (schema[step.row][step.col].match(/\*/)) {
         const partNumber = partNums[`${JSON.stringify(step)}`];
         partNums[`${JSON.stringify(step)}`] = partNumber
           ? [...partNumber, +strNumber]
