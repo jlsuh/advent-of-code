@@ -41,7 +41,7 @@ for (let rowIndex = 0; rowIndex < schema.length; rowIndex += 1) {
     const pivot = { row: rowIndex, col: number["index"] };
     const strNumber = number[0];
     part1Solution += adjacentSteps(pivot, strNumber, schema.length, row.length)
-      .reduce((acc, step) => acc + schema[step.row][step.col], "")
+      .reduce((sum, step) => sum + schema[step.row][step.col], "")
       .match("[*#$@&%+/=-]")
       ? +strNumber
       : 0;
