@@ -3,8 +3,6 @@ import { ints, readInput } from "../utils.js";
 const start = performance.now();
 const input = await readInput();
 
-const schema = input.split(/\r\n/);
-
 const nonCoaxialSteps = (row, col, nRows) => {
   const steps = [];
   if (row - 1 >= 0) {
@@ -35,13 +33,13 @@ const adjacentSteps = ({ row, col }, content, nRows, rowLen) => {
 
 // part-1
 let part1Solution = 0;
-for (let rowIndex = 0; rowIndex < schema.length; rowIndex += 1) {
-  const row = schema[rowIndex];
+for (let rowIndex = 0; rowIndex < input.length; rowIndex += 1) {
+  const row = input[rowIndex];
   for (const num of ints(row)) {
     const pivot = { row: rowIndex, col: num["index"] };
     const strNum = num[0];
-    part1Solution += adjacentSteps(pivot, strNum, schema.length, row.length)
-      .reduce((sum, step) => sum + schema[step.row][step.col], "")
+    part1Solution += adjacentSteps(pivot, strNum, input.length, row.length)
+      .reduce((sum, step) => sum + input[step.row][step.col], "")
       .match(/[*#$@&%+/=-]/)
       ? +strNum
       : 0;
@@ -51,14 +49,14 @@ console.log(part1Solution);
 
 // part-2
 const partNums = {};
-for (let rowIndex = 0; rowIndex < schema.length; rowIndex += 1) {
-  const row = schema[rowIndex];
+for (let rowIndex = 0; rowIndex < input.length; rowIndex += 1) {
+  const row = input[rowIndex];
   for (const num of ints(row)) {
     const pivot = { row: rowIndex, col: num["index"] };
     const strNum = num[0];
-    const steps = adjacentSteps(pivot, strNum, schema.length, row.length);
+    const steps = adjacentSteps(pivot, strNum, input.length, row.length);
     for (const step of steps) {
-      if (schema[step.row][step.col].match(/\*/)) {
+      if (input[step.row][step.col].match(/\*/)) {
         const partNum = partNums[`${JSON.stringify(step)}`];
         partNums[`${JSON.stringify(step)}`] = partNum
           ? [...partNum, +strNum]

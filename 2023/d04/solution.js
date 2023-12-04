@@ -3,9 +3,7 @@ import { range, readInput } from "../utils.js";
 const start = performance.now();
 const input = await readInput();
 
-const cardParts = input
-  .split(/\r\n/)
-  .map((cardInfo) => cardInfo.split(/\s\|\s/));
+const cardParts = input.map((cardInfo) => cardInfo.split(/\s\|\s/));
 const cardNums = cardParts
   .map((parts) => parts.map((part) => part.match(/\d+\s.*/)[0]))
   .map((numList) => numList.map((nums) => nums.split(/\s+/)));

@@ -16,7 +16,7 @@ const readInput = () => {
     readableStream.on("data", (chunk) => chunks.push(Buffer.from(chunk)));
     readableStream.on("error", (error) => reject(error));
     readableStream.on("end", () =>
-      resolve(Buffer.concat(chunks).toString(UTF8)),
+      resolve(Buffer.concat(chunks).toString(UTF8).split(/\r\n/)),
     );
   });
 };

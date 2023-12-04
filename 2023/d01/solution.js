@@ -3,8 +3,6 @@ import { alts, ints, readInput } from "../utils.js";
 const input = await readInput();
 const start = performance.now();
 
-const values = input.split(/\r\n/);
-
 const getSum = (values) =>
   values
     .map((digits) => digits.join(""))
@@ -12,7 +10,7 @@ const getSum = (values) =>
     .reduce((acc, curr) => acc + curr, 0);
 
 // part-1
-const part1Solution = getSum(values.map((value) => ints(value)));
+const part1Solution = getSum(input.map((value) => ints(value)));
 console.log(part1Solution);
 
 // part-2
@@ -29,7 +27,7 @@ const transform = {
 };
 const pattern = `\\d|${alts(transform)}`;
 const part2Solution = getSum(
-  values.map((value) =>
+  input.map((value) =>
     [...value.matchAll(`(?=(${pattern}))`)].map(
       (match) => transform[match[1]] ?? match[1],
     ),
