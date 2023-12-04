@@ -3,7 +3,7 @@ import { alts, ints, readInput } from "../utils.js";
 const input = await readInput();
 const start = performance.now();
 
-const values = input.split("\r\n");
+const values = input.split(/\r\n/);
 
 const getSum = (values) =>
   values
