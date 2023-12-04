@@ -23,19 +23,18 @@ const instances = range(1, cardParts.length, 1).reduce(
   }),
   {},
 );
+let part2Solution = 0;
 for (let i = 0; i < cardParts.length; i += 1) {
   const wNumsLen = cardNums[i][1].filter((num) =>
     cardNums[i][0].includes(num),
   ).length;
   const cardId = i + 1;
+  const cardInstances = instances[`${cardId}`];
   for (const aboveId of range(cardId + 1, cardId + wNumsLen, 1)) {
-    instances[`${aboveId}`] += instances[`${cardId}`];
+    instances[`${aboveId}`] += cardInstances;
   }
+  part2Solution += cardInstances;
 }
-const part2Solution = Object.values(instances).reduce(
-  (sum, curr) => sum + curr,
-  0,
-);
 console.log(part2Solution);
 
 console.log("Elapsed:", performance.now() - start);
