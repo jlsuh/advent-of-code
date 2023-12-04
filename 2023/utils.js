@@ -9,11 +9,6 @@ const INPUT_FILE = "input.txt";
 const FILE_PATH = join(__dirname, DAY_SUBDIR, INPUT_FILE);
 const UTF8 = "utf8";
 
-/**
- * Reads the input file in the same directory as the solution file
- * and returns a promise of the file's contents as a string
- * @returns {Promise<string>}
- */
 const readInput = () => {
   return new Promise((resolve, reject) => {
     const chunks = [];
@@ -26,24 +21,15 @@ const readInput = () => {
   });
 };
 
-/**
- * Returns a string of all keys in the objects joined by "|" (alternation)
- * @param  {...object} objects
- * @returns {string}
- */
 const alts = (...objects) =>
   objects.reduce(
     (pattern, object) => pattern + Object.keys(object).join("|"),
     "",
   );
 
-/**
- * Returns an array of all integers in the string
- * @param {string} string
- * @returns {string[]}
- */
-const ints = (string) => {
-  return [...string.matchAll(/\d+/g)];
-};
+const ints = (string) => [...string.matchAll(/\d+/g)];
 
-export { alts, ints, readInput };
+const range = (start, stop, step) =>
+  Array.from({ length: (stop - start) / step + 1 }, (_, i) => start + i * step);
+
+export { alts, ints, range, readInput };
