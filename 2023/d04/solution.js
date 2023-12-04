@@ -17,9 +17,9 @@ console.log(part1Solution);
 
 // part-2
 const instances = range(1, cardParts.length, 1).reduce(
-  (cardTags, tag) => ({
-    ...cardTags,
-    [`${tag}`]: 1,
+  (instances, id) => ({
+    ...instances,
+    [`${id}`]: 1,
   }),
   {},
 );
