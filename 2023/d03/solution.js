@@ -15,7 +15,6 @@ const nonCoaxialSteps = (row, col, numberOfRows) => {
   }
   return steps;
 };
-
 const adjacentSteps = ({ row, col }, content, nRows, rowLen) => {
   const low = col;
   const high = col + content.length - 1;
