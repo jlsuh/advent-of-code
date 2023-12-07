@@ -69,7 +69,7 @@ function nonIntersectingIntervals(seedInterval, intersectingIntervals) {
   return nonIntersectingIntervals.toSorted((int1, int2) => int1[0] - int2[0]);
 }
 
-let newSeeds = JSON.parse(JSON.stringify(seeds));
+let newSeeds = seeds;
 for (const map of maps) {
   let currMapSeeds = [];
   for (let i = 0; i < newSeeds.length; i += 2) {
