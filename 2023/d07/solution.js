@@ -3,15 +3,7 @@ import { charCounts, readInput } from "../utils.js";
 const start = performance.now();
 const input = (await readInput()).map((input) => input.split(" "));
 
-const cardsRank = {
-  5: 7,
-  41: 6,
-  32: 5,
-  311: 4,
-  221: 3,
-  2111: 2,
-  11111: 1,
-};
+const cardsRank = ["11111", "2111", "221", "311", "32", "41", "5"];
 const sortedCardsRank = (cards, withJokers) => {
   const initialInstances = charCounts(cards);
   const instancesWithoutJokers = new Map(initialInstances);
@@ -37,8 +29,8 @@ const sortHands = (withJokers, cardStrength) =>
   input.toSorted((hand1, hand2) => {
     const [cards1, cards2] = [hand1[0], hand2[0]];
     const [rank1, rank2] = [
-      cardsRank[sortedCardsRank(cards1, withJokers)],
-      cardsRank[sortedCardsRank(cards2, withJokers)],
+      cardsRank.indexOf(sortedCardsRank(cards1, withJokers)),
+      cardsRank.indexOf(sortedCardsRank(cards2, withJokers)),
     ];
     if (rank1 > rank2) return 1;
     else if (rank1 < rank2) return -1;
