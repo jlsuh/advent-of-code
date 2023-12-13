@@ -41,4 +41,11 @@ const charCounts = (str) => {
   return counts;
 };
 
-export { alts, charCounts, ints, range, readInput };
+const gcd = (a, b) => {
+  while (b !== 0) [a, b] = [b, a % b];
+  return a;
+};
+
+const lcm = (a, b) => Math.abs(a * b) / gcd(a, b);
+
+export { alts, charCounts, gcd, ints, lcm, range, readInput };

@@ -1,4 +1,4 @@
-import { readInput } from "../utils.js";
+import { lcm, readInput } from "../utils.js";
 
 const start = performance.now();
 const input = await readInput();
@@ -36,11 +36,6 @@ const part1Solution = stepsTaken(["AAA"])[0];
 console.log(part1Solution);
 
 // part-2
-const gcd = (a, b) => {
-  while (b !== 0) [a, b] = [b, a % b];
-  return a;
-};
-const lcm = (a, b) => Math.abs(a * b) / gcd(a, b);
 const limitNodes = [...network.keys()]
   .flatMap((key) => [...key.matchAll(/[A-Z]+[AZ]/g)])
   .join(" ")
