@@ -48,4 +48,4 @@ const gcd = (a, b) => {
 
 const lcm = (a, b) => Math.abs(a * b) / gcd(a, b);
 
-export { alts, charCounts, gcd, ints, lcm, range, readInput };
+export { alts, charCounts, ints, lcm, range, readInput };
