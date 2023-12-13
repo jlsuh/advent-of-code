@@ -9,8 +9,8 @@ const INPUT_FILE = "input.txt";
 const FILE_PATH = join(__dirname, DAY_SUBDIR, INPUT_FILE);
 const UTF8 = "utf8";
 
-const readInput = (splitter) => {
-  return new Promise((resolve, reject) => {
+const readInput = (splitter) =>
+  new Promise((resolve, reject) => {
     const chunks = [];
     const readableStream = fs.createReadStream(FILE_PATH, UTF8);
     readableStream.on("data", (chunk) => chunks.push(Buffer.from(chunk)));
@@ -23,7 +23,6 @@ const readInput = (splitter) => {
       ),
     );
   });
-};
 
 const alts = (...objects) =>
   objects.reduce(
