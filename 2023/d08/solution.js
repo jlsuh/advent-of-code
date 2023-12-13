@@ -49,7 +49,7 @@ const limitNodes = [...network.keys()]
   .toSorted((a, b) => a[2].localeCompare(b[2]));
 const allSteps = stepsTaken(limitNodes.slice(0, limitNodes.length / 2));
 let part2Solution = allSteps.reduce(
-  (acc, curr) => lcm(acc, curr),
+  (currLcm, n) => lcm(currLcm, n),
   allSteps.shift(),
 );
 console.log(part2Solution);
