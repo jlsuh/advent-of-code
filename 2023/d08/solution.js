@@ -36,7 +36,10 @@ const part1Solution = stepsTaken(["AAA"])[0];
 console.log(part1Solution);
 
 // part-2
-const gcd = (a, b) => (b === 0 ? a : gcd(b, a % b));
+const gcd = (a, b) => {
+  while (b !== 0) [a, b] = [b, a % b];
+  return a;
+};
 const lcm = (a, b) => (a * b) / gcd(a, b);
 const limitNodes = [...network.keys()]
   .flatMap((key) => [...key.matchAll(/[A-Z]+[AZ]/g)])
