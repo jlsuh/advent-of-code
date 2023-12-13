@@ -40,7 +40,7 @@ const gcd = (a, b) => {
   while (b !== 0) [a, b] = [b, a % b];
   return a;
 };
-const lcm = (a, b) => (a * b) / gcd(a, b);
+const lcm = (a, b) => Math.abs(a * b) / gcd(a, b);
 const limitNodes = [...network.keys()]
   .flatMap((key) => [...key.matchAll(/[A-Z]+[AZ]/g)])
   .join(" ")
