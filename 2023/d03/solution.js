@@ -65,9 +65,10 @@ for (let rowIndex = 0; rowIndex < input.length; rowIndex += 1) {
     }
   }
 }
-const part2Solution = Object.values(partNums).reduce((sum, partNums) => {
-  return partNums[1] ? sum + partNums[0] * partNums[1] : sum;
-}, 0);
+const part2Solution = Object.values(partNums).reduce(
+  (sum, partNums) => (partNums[1] ? sum + partNums[0] * partNums[1] : sum),
+  0,
+);
 console.log(part2Solution);
 
 console.log("Elapsed:", performance.now() - start);
