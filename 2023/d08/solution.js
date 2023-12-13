@@ -44,10 +44,7 @@ const limitNodes = [...network.keys()]
   .split(" ")
   .toSorted((a, b) => a[2].localeCompare(b[2]));
 const allSteps = stepsTaken(limitNodes.slice(0, limitNodes.length / 2));
-let part2Solution = allSteps.reduce(
-  (currLcm, n) => lcm(currLcm, n),
-  allSteps.shift(),
-);
+let part2Solution = allSteps.reduce((a, b) => lcm(a, b), allSteps.shift());
 console.log(part2Solution);
 
 console.log("Elapsed:", performance.now() - start);
