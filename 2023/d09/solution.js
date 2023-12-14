@@ -24,8 +24,8 @@ const extrapolations = (backwards) => {
         sequences[i - 1].unshift(sequences[i - 1][0] - sequences[i][0]);
       } else {
         sequences[i - 1].push(
-          sequences[i][sequences[i].length - 1] +
-            sequences[i - 1][sequences[i - 1].length - 1],
+          sequences[i - 1][sequences[i - 1].length - 1] +
+            sequences[i][sequences[i].length - 1],
         );
       }
     }
