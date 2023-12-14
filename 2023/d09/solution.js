@@ -6,33 +6,25 @@ const input = await readInput();
 const histories = input
   .map((history) => nums(history).join(" ").split(" "))
   .map((history) => history.map((num) => +num));
-const extrapolations = (backwards) => {
-  let extrapolations = [];
-  for (const history of histories) {
-    let sequences = [history];
-    while (sequences[sequences.length - 1].some((n) => n !== 0)) {
-      const lastSequence = sequences[sequences.length - 1];
-      let newSequence = [];
-      for (let i = 1; i < lastSequence.length; i += 1) {
-        newSequence = [...newSequence, lastSequence[i] - lastSequence[i - 1]];
+const extrapolations = (backwards) =>
+  histories.reduce((extrapolations, history) => {
+    let seqs = [history];
+    while (seqs[seqs.length - 1].some((n) => n !== 0)) {
+      const lastSeq = seqs[seqs.length - 1];
+      let newSeq = [];
+      for (let i = 1; i < lastSeq.length; i += 1) {
+        newSeq = [...newSeq, lastSeq[i] - lastSeq[i - 1]];
       }
-      sequences = [...sequences, newSequence];
+      seqs = [...seqs, newSeq];
     }
-    sequences[sequences.length - 1].push(0);
-    for (let i = sequences.length - 1; i > 0; i -= 1) {
-      if (backwards) {
-        sequences[i - 1].unshift(sequences[i - 1][0] - sequences[i][0]);
-      } else {
-        sequences[i - 1].push(
-          sequences[i - 1][sequences[i - 1].length - 1] +
-            sequences[i][sequences[i].length - 1],
-        );
-      }
+    seqs[seqs.length - 1].push(0);
+    for (let i = seqs.length - 1; i > 0; i -= 1) {
+      const [curr, prev] = [seqs[i], seqs[i - 1]];
+      if (backwards) prev.unshift(prev[0] - curr[0]);
+      else prev.push(prev[prev.length - 1] + curr[curr.length - 1]);
     }
-    extrapolations = [...extrapolations, sequences];
-  }
-  return extrapolations;
-};
+    return [...extrapolations, seqs];
+  }, []);
 
 // part-1
 const part1Solution = extrapolations(false)
