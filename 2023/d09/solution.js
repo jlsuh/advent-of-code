@@ -9,15 +9,15 @@ const histories = input
 const extrapolations = (backwards) =>
   histories.reduce((extrapolations, history) => {
     let seqs = [history];
-    while (seqs[seqs.length - 1].some((n) => n !== 0)) {
-      const lastSeq = seqs[seqs.length - 1];
+    let lastSeq = seqs[seqs.length - 1];
+    for (; lastSeq.some((n) => n !== 0); lastSeq = seqs[seqs.length - 1]) {
       let newSeq = [];
       for (let i = 1; i < lastSeq.length; i += 1) {
         newSeq = [...newSeq, lastSeq[i] - lastSeq[i - 1]];
       }
       seqs = [...seqs, newSeq];
     }
-    seqs[seqs.length - 1].push(0);
+    lastSeq.push(0);
     for (let i = seqs.length - 1; i > 0; i -= 1) {
       const [curr, prev] = [seqs[i], seqs[i - 1]];
       if (backwards) prev.unshift(prev[0] - curr[0]);
