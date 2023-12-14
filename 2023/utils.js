@@ -32,6 +32,8 @@ const alts = (...objects) =>
 
 const ints = (string) => [...string.matchAll(/\d+/g)];
 
+const nums = (string) => [...string.matchAll(/-?\d*\.?\d+/g)];
+
 const range = (start, stop, step) =>
   Array.from({ length: (stop - start) / step + 1 }, (_, i) => start + i * step);
 
@@ -48,4 +50,4 @@ const gcd = (a, b) => {
 
 const lcm = (a, b) => Math.abs(a * b) / gcd(a, b);
 
-export { alts, charCounts, ints, lcm, range, readInput };
+export { alts, charCounts, ints, lcm, nums, range, readInput };
