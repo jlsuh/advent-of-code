@@ -5,6 +5,6 @@
 # Run solution
 
 ```bash
-$ yarn run aoc d<id>/solution.js
+$ bun run d<id>/solution.ts
 # cwd: advent-of-code/2023
 ```
