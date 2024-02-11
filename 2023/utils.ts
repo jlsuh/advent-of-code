@@ -9,18 +9,14 @@ const INPUT_FILE = "input.txt";
 const FILE_PATH = join(__dirname, DAY_SUBDIR, INPUT_FILE);
 const UTF8 = "utf8";
 
-const readInput = (splitter) =>
-  new Promise((resolve, reject) => {
-    const chunks = [];
+const readInput = () =>
+  new Promise<string[]>((resolve, reject) => {
+    const chunks: Buffer[] = [];
     const readableStream = fs.createReadStream(FILE_PATH, UTF8);
     readableStream.on("data", (chunk) => chunks.push(Buffer.from(chunk)));
     readableStream.on("error", (error) => reject(error));
     readableStream.on("end", () =>
-      resolve(
-        Buffer.concat(chunks)
-          .toString(UTF8)
-          .split(splitter ?? /\r\n/),
-      ),
+      resolve(Buffer.concat(chunks).toString(UTF8).split(/\r\n/)),
     );
   });
 
