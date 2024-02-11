@@ -46,7 +46,14 @@ let part1Solution = 0;
 for (let rowIndex = 0; rowIndex < input.length; rowIndex += 1) {
   const row = input[rowIndex];
   for (const num of ints(row)) {
-    const pivot: Pivot = { row: rowIndex, col: num["index"]! };
+    const pivot: Pivot = {
+      row: rowIndex,
+      col:
+        num["index"] ??
+        (() => {
+          throw new Error(":)");
+        })(),
+    };
     const strNum = num[0];
     part1Solution += adjacentSteps(pivot, strNum, input.length, row.length)
       .reduce((sum, step) => sum + input[step.row][step.col], "")
@@ -64,7 +71,14 @@ const partNums: {
 for (let rowIndex = 0; rowIndex < input.length; rowIndex += 1) {
   const row = input[rowIndex];
   for (const num of ints(row)) {
-    const pivot: Pivot = { row: rowIndex, col: num["index"]! };
+    const pivot: Pivot = {
+      row: rowIndex,
+      col:
+        num["index"] ??
+        (() => {
+          throw new Error(":)");
+        })(),
+    };
     const strNum = num[0];
     const steps = adjacentSteps(pivot, strNum, input.length, row.length);
     for (const step of steps) {

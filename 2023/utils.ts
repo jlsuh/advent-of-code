@@ -34,7 +34,7 @@ const nums = (string: string) => [...string.matchAll(/-?\d*\.?\d+/g)];
 const range = (start: number, stop: number, step: number) =>
   Array.from({ length: (stop - start) / step + 1 }, (_, i) => start + i * step);
 
-const charCounts = (str) => {
+const charCounts = (str: string) => {
   const counts = new Map();
   for (const c of str) counts.set(c, (counts.get(c) ?? 0) + 1);
   return counts;

@@ -4,11 +4,19 @@ const start = performance.now();
 const input = await readInput();
 
 const games = input
-  .map((game) => game.match(/\d+\s.*/)![0])
+  .map((game) =>
+    ((match) => {
+      if (match === null) throw new Error(":)");
+      return match[0];
+    })(game.match(/\d+\s.*/)),
+  )
   .map((draws) => draws.split(/; /))
   .map((draw) => draw.map((cubes) => cubes.split(/, /)));
 const getCubeInfo = (cube: string, colorsPattern: string) => ({
-  color: cube.match(colorsPattern)![0],
+  color: ((match) => {
+    if (match === null) throw new Error(":)");
+    return match[0];
+  })(cube.match(colorsPattern)),
   quantity: ints(cube)[0],
 });
 
