@@ -29,7 +29,7 @@ const alts = (...objects: object[]) =>
 const ints = (string: string) =>
   [...string.matchAll(/\d+/g)].map((match) => match);
 
-const nums = (string) => [...string.matchAll(/-?\d*\.?\d+/g)];
+const nums = (string: string) => [...string.matchAll(/-?\d*\.?\d+/g)];
 
 const range = (start: number, stop: number, step: number) =>
   Array.from({ length: (stop - start) / step + 1 }, (_, i) => start + i * step);
