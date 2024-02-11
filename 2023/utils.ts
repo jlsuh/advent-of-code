@@ -45,6 +45,6 @@ const gcd = (a, b) => {
   return a;
 };
 
-const lcm = (a, b) => Math.abs(a * b) / gcd(a, b);
+const lcm = (a: number, b: number) => Math.abs(a * b) / gcd(a, b);
 
 export { alts, charCounts, ints, lcm, nums, range, readInput };

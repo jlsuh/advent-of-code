@@ -14,7 +14,7 @@ const network = input
     map.set(src, [lDest, rDest]);
     return map;
   }, new Map());
-const stepsTaken = (initialNodes) => {
+const stepsTaken = (initialNodes: ReadonlyArray<string>) => {
   const stepsTaken = [];
   for (let currNode of initialNodes) {
     let instrIndex = 0;
@@ -42,7 +42,13 @@ const limitNodes = [...network.keys()]
   .split(" ")
   .toSorted((a, b) => a[2].localeCompare(b[2]));
 const allSteps = stepsTaken(limitNodes.slice(0, limitNodes.length / 2));
-let part2Solution = allSteps.reduce((a, b) => lcm(a, b), allSteps.shift());
+let part2Solution = allSteps.reduce<number>(
+  (a, b) => lcm(a, b),
+  allSteps.shift() ??
+    (() => {
+      throw new Error(":)");
+    })(),
+);
 console.log(part2Solution);
 
 console.log("Elapsed:", performance.now() - start);
