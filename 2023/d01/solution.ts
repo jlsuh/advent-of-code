@@ -10,7 +10,9 @@ const getSum = (values: string[][]) =>
     .reduce((acc, curr) => acc + curr, 0);
 
 // part-1
-const part1Solution = getSum(input.map((value) => ints(value)));
+const part1Solution = getSum(
+  input.map((value) => ints(value).map((match) => match[0])),
+);
 console.log(part1Solution);
 
 // part-2

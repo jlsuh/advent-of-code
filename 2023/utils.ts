@@ -27,7 +27,7 @@ const alts = (...objects: object[]) =>
   );
 
 const ints = (string: string) =>
-  [...string.matchAll(/\d+/g)].map((match) => "" + match);
+  [...string.matchAll(/\d+/g)].map((match) => match);
 
 const nums = (string) => [...string.matchAll(/-?\d*\.?\d+/g)];
 
