@@ -59,7 +59,7 @@ console.log(part1Solution);
 
 // part-2
 const partNums: {
-  [key: string]: number[];
+  [key: string]: ReadonlyArray<number>;
 } = {};
 for (let rowIndex = 0; rowIndex < input.length; rowIndex += 1) {
   const row = input[rowIndex];

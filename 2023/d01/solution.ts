@@ -3,7 +3,7 @@ import { alts, ints, readInput } from "../utils.js";
 const input = await readInput();
 const start = performance.now();
 
-const getSum = (values: string[][]) =>
+const getSum = (values: ReadonlyArray<ReadonlyArray<string>>) =>
   values
     .map((digits) => digits.join(""))
     .map((value) => +(value[0] + value[value.length - 1]))
