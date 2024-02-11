@@ -40,7 +40,7 @@ const charCounts = (str: string) => {
   return counts;
 };
 
-const gcd = (a, b) => {
+const gcd = (a: number, b: number) => {
   while (b !== 0) [a, b] = [b, a % b];
   return a;
 };
