@@ -5,7 +5,7 @@ const input = await readInput();
 
 const cardParts = input.map((cardInfo) => cardInfo.split(/\s\|\s/));
 const cardNums = cardParts
-  .map((parts) => parts.map((part) => part.match(/\d+\s.*/)[0]))
+  .map((parts) => parts.map((part) => part.match(/\d+\s.*/)![0]))
   .map((numList) => numList.map((nums) => nums.split(/\s+/)));
 
 // part-1
@@ -16,7 +16,9 @@ const part1Solution = cardNums
 console.log(part1Solution);
 
 // part-2
-const instances = range(1, cardParts.length, 1).reduce(
+const instances: {
+  [key: string]: number;
+} = range(1, cardParts.length, 1).reduce(
   (instances, id) => ({
     ...instances,
     [`${id}`]: 1,

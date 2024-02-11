@@ -31,7 +31,7 @@ const ints = (string: string) =>
 
 const nums = (string) => [...string.matchAll(/-?\d*\.?\d+/g)];
 
-const range = (start, stop, step) =>
+const range = (start: number, stop: number, step: number) =>
   Array.from({ length: (stop - start) / step + 1 }, (_, i) => start + i * step);
 
 const charCounts = (str) => {
