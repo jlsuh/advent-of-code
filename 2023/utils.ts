@@ -20,13 +20,14 @@ const readInput = () =>
     );
   });
 
-const alts = (...objects) =>
+const alts = (...objects: object[]) =>
   objects.reduce(
     (pattern, object) => pattern + Object.keys(object).join("|"),
     "",
   );
 
-const ints = (string) => [...string.matchAll(/\d+/g)];
+const ints = (string: string) =>
+  [...string.matchAll(/\d+/g)].map((match) => "" + match);
 
 const nums = (string) => [...string.matchAll(/-?\d*\.?\d+/g)];
 
