@@ -11,7 +11,7 @@ const seeds = ints(input[0])
 const maps = input
   .toSpliced(0, 2)
   .map((input) => ints(input).join(" ").split(" "))
-  .reduce(
+  .reduce<Array<Array<ReadonlyArray<string>>>>(
     (maps, curr) => {
       if (curr[0]) maps[maps.length - 1].push(curr);
       else maps.push([]);
@@ -39,7 +39,7 @@ for (let seed of seeds) {
 console.log(part1Solution);
 
 // part-2
-function intersect(arr1, arr2) {
+function intersect(arr1: ReadonlyArray<number>, arr2: ReadonlyArray<number>) {
   const [low1, high1] = arr1;
   const [low2, high2] = arr2;
   const low = Math.max(low1, low2);
@@ -48,7 +48,10 @@ function intersect(arr1, arr2) {
   return [low, high];
 }
 
-function nonIntersectingIntervals(seedInterval, intersectingIntervals) {
+function nonIntersectingIntervals(
+  seedInterval: ReadonlyArray<number>,
+  intersectingIntervals: ReadonlyArray<ReadonlyArray<number>>,
+) {
   const nonIntersectingIntervals = [];
   const [seedLow, seedHigh] = seedInterval;
   const [firstLow] = intersectingIntervals[0];
@@ -77,7 +80,7 @@ for (const map of maps) {
     const transformedIntersectionIntervals = [];
     const nonIntersectionIntervals = [];
     let seedInterval = [newSeeds[i], newSeeds[i] + newSeeds[i + 1] - 1];
-    for (const transform of map.toSorted((t1, t2) => t1[1] - t2[1])) {
+    for (const transform of map.toSorted((t1, t2) => +t1[1] - +t2[1])) {
       const [destStart, intervalLow, rangeLen] = transform.map((num) => +num);
       const intervalHigh = intervalLow + rangeLen - 1;
       const interval = [intervalLow, intervalHigh];

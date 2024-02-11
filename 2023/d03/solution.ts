@@ -1,9 +1,14 @@
 import { ints, readInput } from "../utils.js";
 
+type Pivot = {
+  row: number;
+  col: number;
+};
+
 const start = performance.now();
 const input = await readInput();
 
-const nonCoaxialSteps = (row, col, nRows) => {
+const nonCoaxialSteps = (row: number, col: number, nRows: number) => {
   const steps = [];
   if (row - 1 >= 0) {
     steps.push({ row: row - 1, col });
@@ -13,7 +18,12 @@ const nonCoaxialSteps = (row, col, nRows) => {
   }
   return steps;
 };
-const adjacentSteps = ({ row, col }, content, nRows, rowLen) => {
+const adjacentSteps = (
+  { row, col }: Pivot,
+  content: string,
+  nRows: number,
+  rowLen: number,
+) => {
   const low = col;
   const high = col + content.length - 1;
   const steps = [];
@@ -36,7 +46,14 @@ let part1Solution = 0;
 for (let rowIndex = 0; rowIndex < input.length; rowIndex += 1) {
   const row = input[rowIndex];
   for (const num of ints(row)) {
-    const pivot = { row: rowIndex, col: num["index"] };
+    const pivot: Pivot = {
+      row: rowIndex,
+      col:
+        num["index"] ??
+        (() => {
+          throw new Error(":)");
+        })(),
+    };
     const strNum = num[0];
     part1Solution += adjacentSteps(pivot, strNum, input.length, row.length)
       .reduce((sum, step) => sum + input[step.row][step.col], "")
@@ -48,11 +65,20 @@ for (let rowIndex = 0; rowIndex < input.length; rowIndex += 1) {
 console.log(part1Solution);
 
 // part-2
-const partNums = {};
+const partNums: {
+  [key: string]: ReadonlyArray<number>;
+} = {};
 for (let rowIndex = 0; rowIndex < input.length; rowIndex += 1) {
   const row = input[rowIndex];
   for (const num of ints(row)) {
-    const pivot = { row: rowIndex, col: num["index"] };
+    const pivot: Pivot = {
+      row: rowIndex,
+      col:
+        num["index"] ??
+        (() => {
+          throw new Error(":)");
+        })(),
+    };
     const strNum = num[0];
     const steps = adjacentSteps(pivot, strNum, input.length, row.length);
     for (const step of steps) {

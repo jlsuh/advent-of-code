@@ -15,16 +15,8 @@
   ],
   "author": "jlsuh",
   "type": "module",
-  "scripts": {
-    "aoc": "nodemon --quiet"
-  },
   "devDependencies": {
-    "nodemon": "^3.0.2",
+    "@types/bun": "latest",
     "prettier": "^3.1.1"
-  },
-  "nodemonConfig": {
-    "events": {
-      "start": "clear"
-    }
   }
 }

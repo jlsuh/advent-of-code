@@ -3,18 +3,22 @@ import { alts, ints, readInput } from "../utils.js";
 const input = await readInput();
 const start = performance.now();
 
-const getSum = (values) =>
+const getSum = (values: ReadonlyArray<ReadonlyArray<string>>) =>
   values
     .map((digits) => digits.join(""))
     .map((value) => +(value[0] + value[value.length - 1]))
     .reduce((acc, curr) => acc + curr, 0);
 
 // part-1
-const part1Solution = getSum(input.map((value) => ints(value)));
+const part1Solution = getSum(
+  input.map((value) => ints(value).map((match) => match[0])),
+);
 console.log(part1Solution);
 
 // part-2
-const transform = {
+const transform: {
+  [key: string]: string;
+} = {
   one: "1",
   two: "2",
   three: "3",
@@ -25,10 +29,10 @@ const transform = {
   eight: "8",
   nine: "9",
 };
-const pattern = `\\d|${alts(transform)}`;
+const pattern = `(?=(\\d|${alts(transform)}))`;
 const part2Solution = getSum(
   input.map((value) =>
-    [...value.matchAll(`(?=(${pattern}))`)].map(
+    [...value.matchAll(new RegExp(pattern, "g"))].map(
       (match) => transform[match[1]] ?? match[1],
     ),
   ),
