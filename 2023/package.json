@@ -16,6 +16,7 @@
   "author": "jlsuh",
   "type": "module",
   "devDependencies": {
+    "@types/bun": "latest",
     "prettier": "^3.1.1"
   }
 }
