@@ -1,0 +1,21 @@
+{
+  "name": "aoc-2024",
+  "version": "1.0.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jlsuh/advent-of-code.git"
+  },
+  "keywords": [
+    "advent-of-code",
+    "adventofcode",
+    "aoc",
+    "advent",
+    "christmascoding"
+  ],
+  "author": "jlsuh",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "1.1.14"
+  }
+}
