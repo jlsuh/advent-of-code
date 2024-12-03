@@ -3,15 +3,19 @@ import { readInput } from "../utils.js";
 const start = performance.now();
 const input = await readInput();
 
-const fsts: number[] = [];
-const snds: number[] = [];
-for (const line of input[0].split(/\n/)) {
-  const [fst, snd] = line.split(/\s+/).map((n) => +n);
-  fsts.push(fst);
-  snds.push(snd);
-}
-fsts.sort();
-snds.sort();
+const [fsts, snds] = input[0]
+  .split(/\n/)
+  .reduce<Array<Array<number>>>(
+    (lines, line) => {
+      const [fst, snd] = line.split(/\s+/).map((n) => +n);
+      return [
+        [...lines[0], fst],
+        [...lines[1], snd],
+      ];
+    },
+    [[], []],
+  )
+  .map((lines) => lines.toSorted());
 
 // part-1
 const part1Solution = fsts.reduce(
