@@ -10,7 +10,7 @@ const FILE_PATH = join(__dirname, DAY_SUBDIR, INPUT_FILE);
 const UTF8 = "utf8";
 
 const readInput = () =>
-  new Promise<string[]>((resolve, reject) => {
+  new Promise<ReadonlyArray<string>>((resolve, reject) => {
     const chunks: Uint8Array[] = [];
     const readableStream = fs.createReadStream(FILE_PATH, UTF8);
     readableStream.on("data", (chunk) => {
