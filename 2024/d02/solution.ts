@@ -19,32 +19,27 @@ function containsSafeReport(subLevels: ReadonlyArray<ReadonlyArray<number>>) {
   });
 }
 
+const getUnsafeReports = (allowTolerance: boolean) =>
+  reports.reduce((unsafeReports, report) => {
+    const levels = report.split(/\s/).map((n) => +n);
+    const subLevels = [levels.toSpliced(0, 0)];
+    if (allowTolerance)
+      for (let i = 0; i <= levels.length - 1; i += 1)
+        subLevels.push(levels.toSpliced(i, 1));
+    if (!containsSafeReport(subLevels)) return unsafeReports + 1;
+    return unsafeReports;
+  }, 0);
+
 const input = await readInput();
 const reports: ReadonlyArray<string> = input[0].split(/\n/);
 const totalReports = reports.length;
 
 // part-1
-console.log(
-  totalReports -
-    reports.reduce((unsafeReports, report) => {
-      const levels = report.split(/\s/).map((n) => +n);
-      const subLevels = [levels.toSpliced(0, 0)];
-      if (!containsSafeReport(subLevels)) return unsafeReports + 1;
-      return unsafeReports;
-    }, 0),
-);
+const part1Solution = totalReports - getUnsafeReports(false);
+console.log(part1Solution);
 
 // part-2
-console.log(
-  totalReports -
-    reports.reduce((unsafeReports, report) => {
-      const levels = report.split(/\s/).map((n) => +n);
-      const subLevels = [levels.toSpliced(0, 0)];
-      for (let i = 0; i <= levels.length - 1; i += 1)
-        subLevels.push(levels.toSpliced(i, 1));
-      if (!containsSafeReport(subLevels)) return unsafeReports + 1;
-      return unsafeReports;
-    }, 0),
-);
+const part2Solution = totalReports - getUnsafeReports(true);
+console.log(part2Solution);
 
 console.log("Elapsed:", performance.now() - start);
