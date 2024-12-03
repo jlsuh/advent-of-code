@@ -31,7 +31,7 @@ const getUnsafeReports = (allowTolerance: boolean) =>
   }, 0);
 
 const input = await readInput();
-const reports: ReadonlyArray<string> = input[0].split(/\n/);
+const reports = input[0].split(/\n/);
 const totalReports = reports.length;
 
 // part-1
