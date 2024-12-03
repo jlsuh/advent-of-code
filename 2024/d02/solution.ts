@@ -19,7 +19,7 @@ function containsSafeReport(subLevels: ReadonlyArray<ReadonlyArray<number>>) {
   });
 }
 
-const getUnsafeReports = (allowTolerance: boolean) =>
+const unsafeReports = (reports: string[], allowTolerance: boolean) =>
   reports.reduce((unsafeReports, report) => {
     const levels = report.split(/\s/).map((n) => +n);
     const subLevels = [levels.toSpliced(0, 0)];
@@ -35,11 +35,11 @@ const reports = input[0].split(/\n/);
 const totalReports = reports.length;
 
 // part-1
-const part1Solution = totalReports - getUnsafeReports(false);
+const part1Solution = totalReports - unsafeReports(reports, false);
 console.log(part1Solution);
 
 // part-2
-const part2Solution = totalReports - getUnsafeReports(true);
+const part2Solution = totalReports - unsafeReports(reports, true);
 console.log(part2Solution);
 
 console.log("Elapsed:", performance.now() - start);
