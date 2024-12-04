@@ -1,4 +1,4 @@
-import { readInput } from "../utils.js";
+import { readInput } from '../utils.js';
 
 const start = performance.now();
 
@@ -42,4 +42,4 @@ console.log(part1Solution);
 const part2Solution = totalReports - unsafeReports(reports, true);
 console.log(part2Solution);
 
-console.log("Elapsed:", performance.now() - start);
+console.log('Elapsed:', performance.now() - start);

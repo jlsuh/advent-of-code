@@ -1,4 +1,4 @@
-import { readInput } from "../utils.js";
+import { readInput } from '../utils.js';
 
 const start = performance.now();
 const input = await readInput();
@@ -26,15 +26,15 @@ console.log(part1Solution);
 
 // part-2
 const sndsCount = snds.reduce((map, curr) => {
-  const key = "" + curr;
+  const key = '' + curr;
   if (map.has(key)) map.set(key, (map.get(key) ?? 0) + 1);
   else map.set(key, 1);
   return map;
 }, new Map<string, number>());
 const part2Solution = fsts.reduce(
-  (sum, curr) => sum + curr * (sndsCount.get("" + curr) ?? 0),
+  (sum, curr) => sum + curr * (sndsCount.get('' + curr) ?? 0),
   0,
 );
 console.log(part2Solution);
 
-console.log("Elapsed:", performance.now() - start);
+console.log('Elapsed:', performance.now() - start);
