@@ -4,9 +4,10 @@ const start = performance.now();
 const input = await readInput();
 const lines = input[0].split('\n').map((line) => line.split(''));
 
-const MAX_ROW = lines.length - 1;
-const MAX_COL = lines[0].length - 1;
+const maxRow = lines.length - 1;
+const maxCol = lines[0].length - 1;
 
+// part-1
 let part1Solution = 0;
 for (let row = 0; row < lines.length; row += 1)
   for (let col = 0; col < lines[row].length; col += 1)
@@ -85,7 +86,7 @@ for (let row = 0; row < lines.length; row += 1)
                 ],
               ]
             : [],
-        ].flat())(row, col, MAX_ROW, MAX_COL))
+        ].flat())(row, col, maxRow, maxCol))
         if (
           lines[row + M[0]][col + M[1]] === 'M' &&
           lines[row + A[0]][col + A[1]] === 'A' &&
@@ -94,6 +95,7 @@ for (let row = 0; row < lines.length; row += 1)
           part1Solution += 1;
 console.log(part1Solution);
 
+// part-2
 let part2Solution = 0;
 for (let row = 0; row < lines.length; row += 1)
   for (let col = 0; col < lines[row].length; col += 1)
@@ -108,7 +110,7 @@ for (let row = 0; row < lines.length; row += 1)
                 [1, -1],
               ],
             ]
-          : [])(row, col, MAX_ROW, MAX_COL)) {
+          : [])(row, col, maxRow, maxCol)) {
         const NWChar = lines[row + NW[0]][col + NW[1]];
         const NEChar = lines[row + NE[0]][col + NE[1]];
         const SWChar = lines[row + SW[0]][col + SW[1]];

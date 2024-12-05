@@ -1,9 +1,12 @@
 import { readInput } from '../utils.js';
 
 const start = performance.now();
+const input = await readInput();
+const reports = input[0].split(/\n/);
+const totalReports = reports.length;
 
-function containsSafeReport(subLevels: ReadonlyArray<ReadonlyArray<number>>) {
-  return subLevels.some((subLevel) => {
+const containsSafeReport = (subLevels: ReadonlyArray<ReadonlyArray<number>>) =>
+  subLevels.some((subLevel) => {
     let desc = 0;
     let asc = 0;
     for (let i = 1; i <= subLevel.length - 1; i += 1) {
@@ -17,7 +20,6 @@ function containsSafeReport(subLevels: ReadonlyArray<ReadonlyArray<number>>) {
     }
     return true;
   });
-}
 
 const unsafeReports = (reports: string[], allowTolerance: boolean) =>
   reports.reduce((unsafeReports, report) => {
@@ -29,10 +31,6 @@ const unsafeReports = (reports: string[], allowTolerance: boolean) =>
     if (!containsSafeReport(subLevels)) return unsafeReports + 1;
     return unsafeReports;
   }, 0);
-
-const input = await readInput();
-const reports = input[0].split(/\n/);
-const totalReports = reports.length;
 
 // part-1
 const part1Solution = totalReports - unsafeReports(reports, false);
