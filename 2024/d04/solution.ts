@@ -4,14 +4,14 @@ const start = performance.now();
 const input = await readInput();
 const lines = input[0].split('\n').map((line) => line.split(''));
 
-const MAX_HEIGHT = lines.length - 1;
-const MAX_WIDTH = lines[0].length - 1;
+const MAX_ROW = lines.length - 1;
+const MAX_COL = lines[0].length - 1;
 
 let part1Solution = 0;
 for (let row = 0; row < lines.length; row += 1)
   for (let col = 0; col < lines[row].length; col += 1)
     if (lines[row][col] === 'X')
-      for (const [M, A, S] of ((row, col, r = 3) =>
+      for (const [M, A, S] of ((row, col, maxRow, maxCol, r = 3) =>
         [
           row - r >= 0 && col - r >= 0
             ? [
@@ -31,7 +31,7 @@ for (let row = 0; row < lines.length; row += 1)
                 ],
               ]
             : [],
-          row - r >= 0 && col + r <= MAX_WIDTH
+          row - r >= 0 && col + r <= maxCol
             ? [
                 [
                   [-1, 1],
@@ -40,7 +40,7 @@ for (let row = 0; row < lines.length; row += 1)
                 ],
               ]
             : [],
-          col + r <= MAX_WIDTH
+          col + r <= maxCol
             ? [
                 [
                   [0, 1],
@@ -49,7 +49,7 @@ for (let row = 0; row < lines.length; row += 1)
                 ],
               ]
             : [],
-          row + r <= MAX_HEIGHT && col + r <= MAX_WIDTH
+          row + r <= maxRow && col + r <= maxCol
             ? [
                 [
                   [1, 1],
@@ -58,7 +58,7 @@ for (let row = 0; row < lines.length; row += 1)
                 ],
               ]
             : [],
-          row + r <= MAX_HEIGHT
+          row + r <= maxRow
             ? [
                 [
                   [1, 0],
@@ -67,7 +67,7 @@ for (let row = 0; row < lines.length; row += 1)
                 ],
               ]
             : [],
-          row + r <= MAX_HEIGHT && col - r >= 0
+          row + r <= maxRow && col - r >= 0
             ? [
                 [
                   [1, -1],
@@ -85,7 +85,7 @@ for (let row = 0; row < lines.length; row += 1)
                 ],
               ]
             : [],
-        ].flat())(row, col))
+        ].flat())(row, col, MAX_ROW, MAX_COL))
         if (
           lines[row + M[0]][col + M[1]] === 'M' &&
           lines[row + A[0]][col + A[1]] === 'A' &&
@@ -98,11 +98,8 @@ let part2Solution = 0;
 for (let row = 0; row < lines.length; row += 1)
   for (let col = 0; col < lines[row].length; col += 1)
     if (lines[row][col] === 'A')
-      for (const [NW, NE, SE, SW] of ((row, col, r = 1) =>
-        row - r >= 0 &&
-        col - r >= 0 &&
-        row + r <= MAX_HEIGHT &&
-        col + r <= MAX_WIDTH
+      for (const [NW, NE, SE, SW] of ((row, col, maxRow, maxCol, r = 1) =>
+        row - r >= 0 && col - r >= 0 && row + r <= maxRow && col + r <= maxCol
           ? [
               [
                 [-1, -1],
@@ -111,7 +108,7 @@ for (let row = 0; row < lines.length; row += 1)
                 [1, -1],
               ],
             ]
-          : [])(row, col)) {
+          : [])(row, col, MAX_ROW, MAX_COL)) {
         const NWChar = lines[row + NW[0]][col + NW[1]];
         const NEChar = lines[row + NE[0]][col + NE[1]];
         const SWChar = lines[row + SW[0]][col + SW[1]];
