@@ -25,7 +25,7 @@ const sumMiddlePages = (pages: string[]) =>
 const correctlyOrderedUpdates: string[] = [];
 const incorrectlyOrderedUpdates: string[] = [];
 for (const update of updates.split(/\n/)) {
-  let shouldContinue = false;
+  let isIncorrectlyOrderedUpdate = false;
   const pages = update.split(/,/);
   for (let i = 0; i < pages.length; i += 1) {
     const head = pages[i];
@@ -35,11 +35,11 @@ for (const update of updates.split(/\n/)) {
       !tail.every((page) => successors.includes(page)) ||
       (successors.length === 0 && tail.length > 0)
     ) {
-      shouldContinue = true;
+      isIncorrectlyOrderedUpdate = true;
       break;
     }
   }
-  if (shouldContinue) {
+  if (isIncorrectlyOrderedUpdate) {
     incorrectlyOrderedUpdates.push(update);
     continue;
   }
