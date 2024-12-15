@@ -76,7 +76,7 @@ for (let i = 0; i < incorrectlyOrderedUpdates.length; i += 1) {
       j -= 1;
     }
   }
-  incorrectlyOrderedUpdates[i] = pages.join(',');
+  incorrectlyOrderedUpdates[i] = pages.join();
 }
 const part2Solution = sumMiddlePages(incorrectlyOrderedUpdates);
 console.log(part2Solution);
