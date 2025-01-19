@@ -1,4 +1,4 @@
-import { readInput } from '../utils.js';
+import { readInput } from '../utils.ts';
 
 const start = performance.now();
 const input = await readInput();

@@ -16,7 +16,7 @@
   "author": "jlsuh",
   "type": "module",
   "devDependencies": {
-    "@types/bun": "1.1.14",
+    "@types/node": "22.10.7",
     "prettier": "3.4.2"
   }
 }

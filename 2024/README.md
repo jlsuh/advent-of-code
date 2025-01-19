@@ -5,6 +5,6 @@
 # Run solution
 
 ```bash
-$ bun run d<id>/solution.ts
+$ node d<id>/solution.ts
 # cwd: advent-of-code/2024
 ```
