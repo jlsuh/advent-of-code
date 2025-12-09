@@ -3,9 +3,9 @@ const std = @import("std");
 var it = std.mem.splitAny(u8, input, "\n");
 const input = @embedFile("input.txt");
 
-pub fn fstPart() !u32 {
+pub fn fstPart() !u16 {
     var dial: i16 = 50;
-    var timesLeftPointingAtZero: u32 = 0;
+    var timesLeftPointingAtZero: u16 = 0;
     while (it.next()) |rotation| {
         const distance: i16 = try std.fmt.parseInt(i16, rotation[1..], 10);
         dial += if (rotation[0] == 'R') distance else -distance;
@@ -15,7 +15,7 @@ pub fn fstPart() !u32 {
     return timesLeftPointingAtZero;
 }
 
-pub fn sndPart() !u32 {
+pub fn sndPart() !u16 {
     return 0;
 }
 
