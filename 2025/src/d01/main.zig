@@ -1,6 +1,7 @@
 const std = @import("std");
+const utils = @import("utils");
 
-var it = @import("utils").compose_file_split_iterator("d01/input.txt", "\n");
+var it: std.mem.SplitIterator(u8, .any) = utils.compose_file_split_iterator("d01/input.txt", "\n");
 
 const max_dial_size = 100;
 const initial_dial = 50;
