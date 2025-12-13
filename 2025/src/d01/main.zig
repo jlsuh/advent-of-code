@@ -1,10 +1,11 @@
 const std = @import("std");
 
-var it = std.mem.splitAny(u8, @embedFile("input.txt"), "\n");
+var it = @import("utils").compose_file_split_iterator("d01/input.txt", "\n");
+
 const max_dial_size = 100;
 const initial_dial = 50;
 
-pub fn fstPart() !u16 {
+fn fstPart() !u16 {
     var dial: i32 = initial_dial;
     var times_pointing_at_zero: u16 = 0;
     while (it.next()) |rotation| {
@@ -15,7 +16,7 @@ pub fn fstPart() !u16 {
     return times_pointing_at_zero;
 }
 
-pub fn sndPart() !u16 {
+fn sndPart() !u16 {
     var dial: u16 = initial_dial;
     var times_pointing_at_zero: u16 = 0;
     while (it.next()) |rotation| {
